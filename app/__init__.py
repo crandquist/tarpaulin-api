@@ -43,14 +43,14 @@ def register_blueprints(app):
     Args:
         app: Flask application instance
     """
-    # TODO: Import and register blueprints as they are implemented
-    # from app.routes.auth_routes import auth_bp
-    # from app.routes.user_routes import users_bp
-    # from app.routes.course_routes import courses_bp
-    # from app.routes.avatar_routes import avatar_bp
+    # Import blueprints here to avoid circular imports
+    from app.routes.auth_routes import auth_bp
+    from app.routes.user_routes import users_bp
+    from app.routes.course_routes import courses_bp
+    from app.routes.avatar_routes import avatar_bp
     
-    # app.register_blueprint(auth_bp)
-    # app.register_blueprint(users_bp)
-    # app.register_blueprint(courses_bp)
-    # app.register_blueprint(avatar_bp)
-    pass
+    # Register blueprints with proper prefixes
+    app.register_blueprint(auth_bp, url_prefix='')
+    app.register_blueprint(users_bp, url_prefix='')
+    app.register_blueprint(courses_bp, url_prefix='')
+    app.register_blueprint(avatar_bp, url_prefix='')

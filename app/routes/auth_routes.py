@@ -8,6 +8,12 @@ from app.errors.exceptions import BadRequestError, UnauthorizedError
 auth_bp = Blueprint('auth', __name__)
 
 
+@auth_bp.route('/test', methods=['GET'])
+def test():
+    """Test route to verify blueprint is working."""
+    return jsonify({"message": "Auth blueprint is working!"}), 200
+
+
 @auth_bp.route('/users/login', methods=['POST'])
 def login():
     """User login endpoint.

@@ -5,7 +5,6 @@ from flask import current_app
 from app.errors.exceptions import UnauthorizedError, BadRequestError
 
 
-
 def login_user(username, password):
     """Authenticate user with Auth0 and get JWT token.
     
@@ -21,8 +20,8 @@ def login_user(username, password):
         UnauthorizedError: If credentials are invalid
     """
     if not username or not password:
-        raise BadRequestError('Username and password are required.')
-
+        raise BadRequestError('Username and password are required')
+    
     # Auth0 token endpoint
     url = f'https://{current_app.config["AUTH0_DOMAIN"]}/oauth/token'
     
@@ -40,6 +39,10 @@ def login_user(username, password):
     # Make request to Auth0
     response = requests.post(url, json=data)
     
+    # Debug: Print response details
+    print(f"Auth0 Response Status: {response.status_code}")
+    print(f"Auth0 Response: {response.text}")
+    
     if response.status_code == 200:
         result = response.json()
         return {
@@ -49,3 +52,4 @@ def login_user(username, password):
         raise UnauthorizedError('Invalid username or password')
     else:
         raise UnauthorizedError('Authentication failed')
+    
