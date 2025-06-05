@@ -62,8 +62,7 @@ def get_user(user_id: int):
     except NotFoundError:
         return error_response("Not found", 404)
 
-@users_bp.route("/users", methods=["GET"], strict_slashes=False)
-@users_bp.route("/users/", methods=["GET"])
+@users_bp.route("/", methods=["GET"])
 @requires_auth
 @requires_role("admin")
 def get_users():
