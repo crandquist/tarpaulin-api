@@ -43,8 +43,7 @@ def get_user(user_id: int):
         return error_response("Not found", 404)
 
 
-@users_bp.route("/", methods=["GET"])
-@requires_auth
+@users_bp.route("", methods=["GET"])
 @requires_role("admin")
 def get_users():
     """

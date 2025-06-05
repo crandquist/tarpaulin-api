@@ -1,5 +1,6 @@
 # app/services/user_service.py
 
+from flask import request
 from google.cloud import datastore
 client = datastore.Client()
 
@@ -21,6 +22,8 @@ def get_all_users():
             "role": ent["role"],
             "sub": ent["sub"],
         })
+        
+    print("DEBUG: current_user =", request.current_user)
     return result
 
 def get_user_by_id(user_id: int) -> dict | None:
