@@ -50,7 +50,7 @@ def register_blueprints(app):
     from app.routes.avatar_routes import avatar_bp
     
     # Register blueprints with proper prefixes
-    app.register_blueprint(auth_bp, url_prefix='')
-    app.register_blueprint(users_bp, url_prefix='')
-    app.register_blueprint(courses_bp, url_prefix='')
-    app.register_blueprint(avatar_bp, url_prefix='')
+    app.register_blueprint(auth_bp)    # ensures /users/login is active
+    app.register_blueprint(users_bp)   # handles GET/… /users
+    # app.register_blueprint(course_bp)  # handles /courses
+    # app.register_blueprint(enrollment_bp)  # handles /courses/<id>/students
