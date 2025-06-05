@@ -22,3 +22,24 @@ def get_all_users():
             "sub": ent["sub"],
         })
     return result
+
+def get_user_by_id(user_id: int) -> dict | None:
+    """
+    Fetch exactly one user entity from Datastore (kind="users").
+    Returns a dict with keys id, role, sub, plus avatar_url if set,
+    or None if no such entity exists.
+    """
+    key = client.key("users", user_id)
+    ent = client.get(key)
+    if not ent:
+        return None
+
+    user = {
+        "id": ent.key.id,
+        "role": ent["role"],
+        "sub": ent["sub"],
+    }
+    # If you’ve already stored an avatar_url in the entity, include it:
+    if "avatar_url" in ent:
+        user["avatar_url"] = ent["avatar_url"]
+    return user
