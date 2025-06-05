@@ -2,7 +2,7 @@
 
 from flask import Blueprint, jsonify, request
 from app.auth.decorators import requires_auth, requires_role
-from app.services.user_service import get_all_users
+from app.services.user_service import get_all_users, get_user_by_id
 from app.utils.responses import error_response
 from app.errors.exceptions import UnauthorizedError, ForbiddenError, NotFoundError
 
