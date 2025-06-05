@@ -60,3 +60,4 @@ htmlcov/
 # Postman Files
 *.postman_collection.json
 *.postman_environment.json
+newman-htmlextra-report.html
